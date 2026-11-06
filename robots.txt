@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /account/
+Disallow: /database/
+
+Sitemap: https://okto-im-menya.ru/sitemap.xml

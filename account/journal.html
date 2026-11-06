@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#a3a67b">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Журнал прогресса ОКТО: участники, отмеченные занятия по курсам и процент выполнения с сортировкой.">
+  <title>Журнал прогресса — ОКТО</title>
+  <link rel="icon" href="../../assets/okto-logo.png?v=20261106021712" type="image/png">
+  <link rel="stylesheet" href="../../assets/site.css?v=20261106021712">
+</head>
+<body class="catalog-page account-page" data-page="journal">
+  <a class="skip-link" href="#main">К содержанию</a>
+
+  <header class="site-header account-header">
+    <a class="brand" href="../../index.html" aria-label="ОКТО им. меня — на главную">
+      <img src="../../assets/okto-logo.png?v=20261106021712" alt="Логотип ОКТО им. меня: нарисованные глаза, буквы К и Т, подпись «им. меня»">
+      <span class="brand-copy"><strong>ОКТО</strong><span>им. меня</span></span>
+    </a>
+    <nav class="account-nav" aria-label="Личный кабинет">
+      <a href="dashboard.html">Кабинет</a>
+      <a href="journal.html" aria-current="page">Журнал</a>
+      <a href="curator.html" data-account-only="curator" hidden>Куратор</a>
+      <a href="../../index.html">На главную</a>
+      <span class="session-chip"><strong data-account-name>—</strong><span data-account-role>куратор</span></span>
+      <button type="button" data-logout>Выйти</button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="account-shell">
+      <div class="account-hero">
+        <div>
+          <p class="eyebrow"><span class="eye-dot" aria-hidden="true"></span> прогресс группы</p>
+          <h1>Журнал прогресса</h1>
+          <p class="account-lede">Кто сколько занятий отметил и какой процент курса пройден. Отметки ставятся в самом курсе, журнал пересчитывает их автоматически.</p>
+        </div>
+        <div class="hero-aside" aria-hidden="true">
+          <strong>◉　◉</strong>
+          <span>участник × занятия</span>
+        </div>
+      </div>
+
+      <p class="notice" id="demo-note" hidden>Демо-режим: данные хранятся только в этом браузере. Для общего входа нужен подключённый сервис аккаунтов.</p>
+      <p class="status-box" id="account-status" role="status" aria-live="polite" data-tone="info" hidden></p>
+
+      <section class="panel denied" id="denied" aria-labelledby="denied-title" hidden>
+        <h1 id="denied-title">Журнал доступен куратору</h1>
+        <p>У вас роль «участник»: журнал группы открывается только с ролью «Куратор». Свой прогресс видно в кабинете участника.</p>
+        <div class="form-actions" style="justify-content:center">
+          <a class="button button-primary" href="dashboard.html">В мой кабинет</a>
+          <a class="button button-quiet" href="../login.html">Войти как куратор</a>
+        </div>
+      </section>
+
+      <section class="panel" aria-labelledby="journal-title">
+        <div class="panel-head">
+          <div>
+            <p class="panel-kicker">сводка по курсам</p>
+            <h2 id="journal-title">Участники и занятия</h2>
+          </div>
+        </div>
+
+        <div class="journal-tools">
+          <div class="field">
+            <label for="journal-course">Курс</label>
+            <select id="journal-course"></select>
+          </div>
+          <button class="button button-quiet button-small" type="button" id="journal-sort" aria-pressed="false">Процент: по убыванию ↓</button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="data-table" id="journal-table">
+            <caption>Отметки занятий и процент выполнения по каждому участнику</caption>
+            <thead id="journal-head"></thead>
+            <tbody id="journal-body"></tbody>
+          </table>
+        </div>
+        <p class="empty-state" id="journal-empty" hidden>В этом браузере пока нет участников с прогрессом. Зарегистрируйте участника и отметьте занятия в курсе.</p>
+        <p class="journal-summary" id="journal-summary" role="status" aria-live="polite"></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer home-footer">
+    <a class="footer-brand" href="../../index.html">ОКТО <span>им. меня</span></a>
+    <a href="../../index.html" class="top-link">На главную ↑</a>
+  </footer>
+
+  <script src="../../assets/config.js?v=20261106021712"></script>
+  <script src="../../assets/supabase.js?v=20261106021712"></script>
+  <script src="../../assets/account.js?v=20261106021712"></script>
+</body>
+</html>

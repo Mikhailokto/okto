@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#a3a67b">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Кабинет участника ОКТО: прогресс по курсам, отправка заданий на проверку и статусы работ.">
+  <title>Кабинет участника — ОКТО</title>
+  <link rel="icon" href="../../assets/okto-logo.png?v=20261106021712" type="image/png">
+  <link rel="stylesheet" href="../../assets/site.css?v=20261106021712">
+</head>
+<body class="catalog-page account-page" data-page="dashboard">
+  <a class="skip-link" href="#main">К содержанию</a>
+
+  <header class="site-header account-header">
+    <a class="brand" href="../../index.html" aria-label="ОКТО им. меня — на главную">
+      <img src="../../assets/okto-logo.png?v=20261106021712" alt="Логотип ОКТО им. меня: нарисованные глаза, буквы К и Т, подпись «им. меня»">
+      <span class="brand-copy"><strong>ОКТО</strong><span>им. меня</span></span>
+    </a>
+    <nav class="account-nav" aria-label="Личный кабинет">
+      <a href="dashboard.html" aria-current="page">Кабинет</a>
+      <a href="journal.html">Журнал</a>
+      <a href="curator.html" data-account-only="curator" hidden>Куратор</a>
+      <a href="../../index.html">На главную</a>
+      <span class="session-chip"><strong data-account-name>—</strong><span data-account-role>участник</span></span>
+      <button type="button" data-logout>Выйти</button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="account-shell">
+      <div class="account-hero">
+        <div data-greeting>
+          <p class="eyebrow"><span class="eye-dot" aria-hidden="true"></span> кабинет участника</p>
+          <h1>Привет, <span data-account-name>участник</span></h1>
+          <p class="account-lede">Здесь видно, сколько занятий отмечено, что уже на проверке у куратора и что стоит доработать.</p>
+        </div>
+        <div class="hero-aside" aria-hidden="true">
+          <strong>◉　◉</strong>
+          <span>сцена · люди · практика</span>
+        </div>
+      </div>
+
+      <p class="notice" id="demo-note" hidden>Демо-режим: данные хранятся только в этом браузере. Для общего входа нужен подключённый сервис аккаунтов.</p>
+      <p class="status-box" id="account-status" role="status" aria-live="polite" data-tone="info" hidden></p>
+
+      <ul class="stat-strip" id="dashboard-stats" aria-label="Краткая сводка"></ul>
+
+      <section class="panel" aria-labelledby="courses-title">
+        <div class="panel-head">
+          <div>
+            <p class="panel-kicker">учимся и пробуем</p>
+            <h2 id="courses-title">Мои курсы</h2>
+          </div>
+          <a class="button button-quiet button-small" href="../../index.html#courses">Каталог курсов</a>
+        </div>
+        <div class="course-progress-list" id="course-progress"></div>
+      </section>
+
+      <section class="panel account-form" aria-labelledby="task-form-title">
+        <div class="panel-head">
+          <div>
+            <p class="panel-kicker">отправить куратору</p>
+            <h2 id="task-form-title">Новое задание</h2>
+          </div>
+        </div>
+        <form id="task-form" class="account-fields" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="task-course">Курс</label>
+              <select id="task-course" name="course" aria-describedby="task-course-error"></select>
+              <p class="field-error" id="task-course-error" data-error-for="task-course" hidden></p>
+            </div>
+            <div class="field">
+              <label for="task-lesson">Занятие</label>
+              <select id="task-lesson" name="lesson" aria-describedby="task-lesson-error"></select>
+              <p class="field-error" id="task-lesson-error" data-error-for="task-lesson" hidden></p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="task-text">Что сделано</label>
+            <textarea id="task-text" name="text" rows="5" placeholder="Например: собрал карту персонажа, проверил два варианта сцены, второй выложил на видео" aria-describedby="task-text-hint task-text-error"></textarea>
+            <p class="field-hint" id="task-text-hint">Минимум 15 символов: что удалось, что вызвало сложности.</p>
+            <p class="field-error" id="task-text-error" data-error-for="task-text" hidden></p>
+          </div>
+          <div class="field">
+            <label for="task-link">Ссылка на работу</label>
+            <input id="task-link" name="link" type="url" inputmode="url" placeholder="https://docs.google.com/…" aria-describedby="task-link-hint task-link-error">
+            <p class="field-hint" id="task-link-hint">Документ, видео или запись репетиции. Необязательно.</p>
+            <p class="field-error" id="task-link-error" data-error-for="task-link" hidden></p>
+          </div>
+          <div class="form-actions">
+            <button class="button button-primary" type="submit">Отправить</button>
+            <span class="muted">Статус после отправки — «на проверке».</span>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel" aria-labelledby="tasks-title">
+        <div class="panel-head">
+          <div>
+            <p class="panel-kicker">история работ</p>
+            <h2 id="tasks-title">Мои задания</h2>
+          </div>
+          <span class="muted">Статусы: на проверке · принято · нужна доработка</span>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="task-table">
+            <caption>Задания, отправленные из этого браузера</caption>
+            <thead>
+              <tr>
+                <th scope="col">Курс</th>
+                <th scope="col">Занятие</th>
+                <th scope="col">Работа</th>
+                <th scope="col">Отправлено</th>
+                <th scope="col">Статус</th>
+              </tr>
+            </thead>
+            <tbody id="task-rows"></tbody>
+          </table>
+        </div>
+        <p class="empty-state" id="task-empty">Пока ни одного задания. Отметьте занятие в курсе и отправьте первую работу — она появится здесь.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer home-footer">
+    <a class="footer-brand" href="../../index.html">ОКТО <span>им. меня</span></a>
+    <a href="../../index.html" class="top-link">На главную ↑</a>
+  </footer>
+
+  <script src="../../assets/config.js?v=20261106021712"></script>
+  <script src="../../assets/supabase.js?v=20261106021712"></script>
+  <script src="../../assets/account.js?v=20261106021712"></script>
+</body>
+</html>
